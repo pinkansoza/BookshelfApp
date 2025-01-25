@@ -55,7 +55,7 @@ input[type="number"] {
     margin-bottom: 10px;
 }
 
-input[type="checkbox"] {
+input[type="radio"] {
     margin-right: 10px;
 }
 
@@ -103,4 +103,27 @@ button:hover {
 [data-testid="bookItemEditButton"]:hover,
 [data-testid="bookItemDeleteButton"]:hover {
     opacity: 0.8;
+}
+
+footer {
+    background-color: #343a40; 
+    color: white; 
+    padding: 15px 10px; 
+    text-align: center; 
+    position: fixed; 
+    bottom: 0; 
+    width: 100%; 
+    font-size: 14px; 
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer a {
+    color: #ffc107;
+    text-decoration: none;
+
+}
+
+footer a:hover {
+    text-decoration: underline;
+
 }
