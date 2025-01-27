@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>Bookshelf App</title>
-
-    <!-- Impor script kamu di sini -->
-    <!-- Lampirkan `defer` jika pemanggilan dilakukan dalam <head> -->
     <script defer src="main.js"></script>
   </head>
   <body>
@@ -16,59 +13,92 @@
     </header>
 
     <main>
+      <!-- Form Tambah Buku -->
       <section>
         <h2>Tambah Buku Baru</h2>
         <form id="bookForm" data-testid="bookForm">
           <div>
             <label for="bookFormTitle">Judul</label>
-            <input id="bookFormTitle" type="text" required data-testid="bookFormTitleInput" />
+            <input
+              id="bookFormTitle"
+              type="text"
+              placeholder="Masukkan judul buku"
+              required
+              data-testid="bookFormTitleInput"
+            />
           </div>
           <div>
             <label for="bookFormAuthor">Penulis</label>
-            <input id="bookFormAuthor" type="text" required data-testid="bookFormAuthorInput" />
+            <input
+              id="bookFormAuthor"
+              type="text"
+              placeholder="Masukkan nama penulis"
+              required
+              data-testid="bookFormAuthorInput"
+            />
           </div>
           <div>
             <label for="bookFormYear">Tahun</label>
-            <input id="bookFormYear" type="number" required data-testid="bookFormYearInput" />
-          </div>
-          <div>
-            <label for="bookFormIsComplete">Selesai dibaca</label>
             <input
-              id="bookFormIsComplete"
-              type="radio"
-              data-testid="bookFormIsCompleteCheckbox"/>
-              <label for="bookFormInComplete">Belum Selesai dibaca</label>
-            <input
-              id="bookFormInComplete"
-              type="radio"
-              data-testid="bookFormInCompleteCheckbox"/>
+              id="bookFormYear"
+              type="number"
+              placeholder="Masukkan tahun terbit"
+              required
+              data-testid="bookFormYearInput"
+            />
           </div>
+          <div class="radio-group">
+            <div>
+              <input
+                id="bookFormIsComplete"
+                type="radio"
+                name="isComplete"
+                value="true"
+                required
+                data-testid="bookFormIsCompleteCheckbox"
+              />
+              <label for="bookFormIsComplete">Selesai dibaca</label>
+            </div>
+            <div>
+              <input
+                id="bookFormInComplete"
+                type="radio"
+                name="isComplete"
+                value="false"
+                required
+                data-testid="bookFormInCompleteCheckbox"
+              />
+              <label for="bookFormInComplete">Belum selesai dibaca</label>
+            </div>
           </div>
           <button id="bookFormSubmit" type="submit" data-testid="bookFormSubmitButton">
-            Masukkan Buku ke rak
+            Masukkan Buku ke Rak
           </button>
         </form>
       </section>
 
+      <!-- Form Cari Buku -->
       <section>
         <h2>Cari Buku</h2>
         <form id="searchBook" data-testid="searchBookForm">
           <label for="searchBookTitle">Judul</label>
-          <input id="searchBookTitle" type="text" data-testid="searchBookFormTitleInput" />
+          <input
+            id="searchBookTitle"
+            type="text"
+            placeholder="Masukkan judul untuk mencari"
+            data-testid="searchBookFormTitleInput"
+          />
           <button id="searchSubmit" type="submit" data-testid="searchBookFormSubmitButton">
             Cari
           </button>
         </form>
       </section>
 
+      <!-- Daftar Buku Belum Selesai Dibaca -->
       <section>
-        <h2>Belum selesai dibaca</h2>
-
+        <h2>Belum Selesai Dibaca</h2>
         <div id="incompleteBookList" data-testid="incompleteBookList">
-          <!-- 
-            Ini adalah struktur HTML untuk masing-masing buku.
-            Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
-          -->
+          <!-- Contoh struktur buku -->
           <div data-bookid="123123123" data-testid="bookItem">
             <h3 data-testid="bookItemTitle">Judul Buku 1</h3>
             <p data-testid="bookItemAuthor">Penulis: Penulis Buku 1</p>
@@ -82,20 +112,17 @@
         </div>
       </section>
 
+      <!-- Daftar Buku Selesai Dibaca -->
       <section>
-        <h2>Selesai dibaca</h2>
-
+        <h2>Selesai Dibaca</h2>
         <div id="completeBookList" data-testid="completeBookList">
-          <!-- 
-            Ini adalah struktur HTML untuk masing-masing buku.
-            Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
-          -->
+          <!-- Contoh struktur buku -->
           <div data-bookid="456456456" data-testid="bookItem">
             <h3 data-testid="bookItemTitle">Judul Buku 2</h3>
             <p data-testid="bookItemAuthor">Penulis: Penulis Buku 2</p>
             <p data-testid="bookItemYear">Tahun: 2030</p>
             <div>
-              <button data-testid="bookItemIsCompleteButton">Selesai dibaca</button>
+              <button data-testid="bookItemIsCompleteButton">Belum selesai dibaca</button>
               <button data-testid="bookItemDeleteButton">Hapus Buku</button>
               <button data-testid="bookItemEditButton">Edit Buku</button>
             </div>
@@ -103,9 +130,9 @@
         </div>
       </section>
     </main>
-  </body>
 
-<footer>
-    <p>&copy; 2024 Bookshelf App. Made by Pinkansoza</p>
-</footer>
+    <footer>
+      <p>&copy; 2024 Bookshelf App. Made by Pinkansoza</p>
+    </footer>
+  </body>
 </html>
