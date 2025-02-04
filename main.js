@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const bookForm = document.getElementById("bookForm");
+    const searchForm = document.getElementById("searchBook");
     const incompleteBookList = document.getElementById("incompleteBookList");
     const completeBookList = document.getElementById("completeBookList");
 
@@ -34,6 +35,32 @@ document.addEventListener("DOMContentLoaded", () => {
         saveBookToLocalStorage(book);
         addBookToList(book);
         bookForm.reset();
+    });
+
+    // Menangani pengiriman formulir untuk mencari buku
+    searchForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+    
+        const searchTitle = document.getElementById("searchBookTitle").value.trim();
+    
+        // Validasi input pencarian
+        if (!searchTitle) {
+            alert("Mohon masukkan judul buku untuk mencari.");
+            return;
+        }
+    
+        const books = getBooksFromLocalStorage();
+    
+        // Filter buku berdasarkan judul
+        const filteredBooks = books.filter(book => book.title.toLowerCase().includes(searchTitle.toLowerCase()));
+    
+        // Cek apakah ada buku yang ditemukan
+        if (filteredBooks.length === 0) {
+            alert("Tidak ada buku yang ditemukan dengan judul tersebut.");
+        } else {
+            // Tampilkan hasil pencarian
+            displaySearchResults(filteredBooks);
+        }
     });
 
     // Event delegation untuk menangani tombol di dalam daftar buku
@@ -136,8 +163,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <p data-testid="bookItemYear">Tahun: ${book.year}</p>
             <div>
                 <button data-testid="bookItemIsCompleteButton">${book.isComplete ? "Belum selesai dibaca" : "Selesai dibaca"}</button>
-                <button data-testid="bookItemEditButton">Edit</button>
-                <button data-testid="bookItemDeleteButton">Hapus</button>
+                <button data-testid="bookItemEditButton">Edit Buku</button>
+                <button data-testid="bookItemDeleteButton">Hapus Buku</button>
             </div>
         `;
 
@@ -146,5 +173,11 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             incompleteBookList.appendChild(bookItem);
         }
+    }
+
+    function displaySearchResults(books) {
+        incompleteBookList.innerHTML = "";
+        completeBookList.innerHTML = "";
+        books.forEach(book => addBookToList(book));
     }
 });
